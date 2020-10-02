@@ -12,6 +12,8 @@ int fal;
 PnodePTR findPlayer(long p_ID);
 teamPtr findTeam(char name[]);
 
+
+//try using the place func.
 //do bubblesort shit tommrow
 
 //Need to rebuild funcs. FUCK go over func func and fix it cause playernode and player are diffrent type of structs.
@@ -131,11 +133,11 @@ void deletePlayer(long p_ID)
 
 teamPtr findTeam(char name[])
 {
-    teamPtr q = head.teamlist;
-    while (q)
+    teamPtr t = head.teamlist;
+    while (t)
     {
-        if (q->teamName == name) return q;
-        q = q->next;
+        if (strcmp(t->teamName,name)==0) return t;
+        t = t->next;
     }
     return NULL;
 }
@@ -145,7 +147,7 @@ void insertTeam(char team_name[])
     teamPtr new_team;
     new_team = (teamRec*)malloc(sizeof(teamRec));
     teamPtr p = findTeam(team_name);
-    if (p == NULL) printf("EROROR\n");
+    if (p) printf("EROROR <--\n");
     else
     {
         strcpy(new_team->teamName, team_name);
@@ -153,7 +155,11 @@ void insertTeam(char team_name[])
         new_team->plarray = NULL;
         p = head.teamlist;
         head.teamlist = new_team;
-        head.teamlist->next = p;
+        if (p == NULL)
+        {
+            head.teamlist->next = NULL;
+        }
+        else head.teamlist->next = p;
         printf("SUCCESS\n");
     }
 }
@@ -199,7 +205,7 @@ void deleteTeam(char name[])
     if (status)printf("SUCCESS\n");
     else printf("FAILURE\n");
 }
-
+ 
 void addPlayertoTeam(long plyrID, char team[])
 {
     playerPtr pll;
@@ -316,6 +322,34 @@ void isPlayerFree(long pID)
 
     }
 }
+
+//strcmp("ab", "ac"); //-1
+
+void orderInTeamArray(char team[])
+{
+    playerPtr temp;
+    teamPtr t = findTeam(team);
+    if (t == NULL) printf("Error cant find team\n");
+    else
+    {
+        int ar_len = t->num;
+        for (int i = 0; i < ar_len - 1; i++)
+        {
+            for (int k = 0; k < ar_len - i - 1; k++)
+            {
+                if (strcmp(t->plarray[k]->firstName, t->plarray[k + 1]->firstName) == 1)
+                {
+                    temp = t->plarray[k];
+                    t->plarray[k] = t->plarray[k + 1];
+                    t->plarray[k + 1] = temp;
+                }
+            }
+        }
+        printTeaminfo(team);
+    }
+}
+
+
 
 void exit_Program()
 {

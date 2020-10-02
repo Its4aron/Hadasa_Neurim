@@ -18,5 +18,9 @@ typedef enum { FALSE, TRUE } booly;
  statusType deletePlayerFromTeam(long p_ID);
  void deletePlayer(long p_ID);
  void printPlayersinLeague();
+ void orderInTeamArray(char team[]);
+ void insertTeam(char team_name[]);
+ void printTeamsinLeague();
+ teamPtr findTeam(char name[]);
 
 

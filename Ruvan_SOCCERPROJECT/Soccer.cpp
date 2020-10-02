@@ -12,26 +12,6 @@ int fal;
 PnodePTR findPlayer(long p_ID);
 teamPtr findTeam(char name[]);
 
-
-//try using the place func.
-//do bubblesort shit tommrow
-
-//Need to rebuild funcs. FUCK go over func func and fix it cause playernode and player are diffrent type of structs.
-//find player fixed
-//insert player fixed
-//deletePlayerfromteam fixed
-//delete player fixed
-//findteam Fixed
-//fixed insert team
-//fixed Delete team
-//fixed add Player Team
-//fixed print teams in leauge
-//fixed print players in leauge
-//fixed print team info
-//fixed print player
-//fixed is player free
-
-
 statusType insertPlayer(long playerID, char lastName[], char firstName[], int age)
 {
     statusType status = SUCCESS;
@@ -323,8 +303,7 @@ void isPlayerFree(long pID)
     }
 }
 
-//strcmp("ab", "ac"); //-1
-
+//bubble sort.
 void orderInTeamArray(char team[])
 {
     playerPtr temp;
@@ -349,25 +328,113 @@ void orderInTeamArray(char team[])
     }
 }
 
+//counts amount in list
+int CountTeamList()
+{
+    teamPtr t = head.teamlist;
+    int ctr=0;
+    while (t)
+    {
+        ctr++;
+        t = t->next;
+    }
+    return ctr;
+}
+
+
+//bubble sort in linked list.
+void sortTeamListBy_Names()
+{
+        int i, j, swa;
+        teamPtr temp,x;
+        int count = CountTeamList();
+        if (count) {
+            for (i = 0; i <= count; i++)
+            {
+                teamPtr t = head.teamlist;
+                swa = 0;
+                for (j = 0; j < count - i - 1; j++)
+                {
+                    x = t->next;
+                    if (strcmp(t->teamName, x->teamName) == 1)
+                    {
+                        if (t == head.teamlist)
+                        {
+                            temp = x->next;
+                            head.teamlist = x;
+                            head.teamlist->next = t;
+                            t->next = temp;
+                        }
+                        else
+                        {
+                            temp = x->next;
+                            x->next = t;
+                            t->next = temp;
+                        }
+                        swa = 1;
+                    }
+                    t = t->next;
+                }
+                if (!swa) break;
+            }
+        }
+        else printf("ERROR NO TEAMS\n");
+    }
+
+void sortTeamListBy_Num()
+{
+    int i, j, swa;
+    teamPtr temp, x;
+    int count = CountTeamList();
+    if (count) {
+        for (i = 0; i <= count; i++)
+        {
+            teamPtr t = head.teamlist;
+            swa = 0;
+            for (j = 0; j < count - i - 1; j++)
+            {
+                x = t->next;
+                if (t->num > x->num)
+                {
+                    if (t == head.teamlist)
+                    {
+                        temp = x->next;
+                        head.teamlist = x;
+                        head.teamlist->next = t;
+                        t->next = temp;
+                    }
+                    else
+                    {
+                        temp = x->next;
+                        x->next = t;
+                        t->next = temp;
+                    }
+                    swa = 1;
+                }
+                t = t->next;
+            }
+            if (!swa) break;
+        }
+    }
+    else printf("ERROR\n");
+}
 
 
 void exit_Program()
 {
-    PnodePTR *q;
-    teamPtr* d;
-    PnodePTR p = head.playerlist;
-    teamPtr t = head.teamlist;
-    while (p)
+    PnodePTR p=head.playerlist;
+    teamPtr t=head.teamlist;
+    while (head.playerlist)
     {
-        q = &p;
-        p = p->next;
-        free(*q);
+        p = head.playerlist;
+        head.playerlist = p->next;
+        free(p);
     }
-    while (t)
+    while (head.teamlist)
     {
-        d = &t;
-        t = t->next;
-        free(*d);
+        t = head.teamlist;
+        head.teamlist= t->next;
+        free(t);
     }
     printf("BYE!!!!!\n");
     exit(1);

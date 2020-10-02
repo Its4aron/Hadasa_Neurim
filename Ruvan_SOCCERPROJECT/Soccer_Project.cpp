@@ -42,10 +42,6 @@ void main()
 		printf("%s <-----\n", d.lastName);
 	}
 	fclose(player_file);*/
-	char name[]="MEOW";
-	insertTeam(name);
-	//printTeamsinLeague();
-	/*teamPtr q = findTeam(name);*/
-	//printf("ttt %s\n", head.teamlist->teamName);
-	orderInTeamArray(name);
+
+
 }

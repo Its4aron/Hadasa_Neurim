@@ -22,5 +22,8 @@ typedef enum { FALSE, TRUE } booly;
  void insertTeam(char team_name[]);
  void printTeamsinLeague();
  teamPtr findTeam(char name[]);
+ void sortTeamListBy_Names();
+ void sortTeamListBy_Num();
+ void exit_Program();
 
 

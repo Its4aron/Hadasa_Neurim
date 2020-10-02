@@ -12,6 +12,8 @@ int fal;
 PnodePTR findPlayer(long p_ID);
 teamPtr findTeam(char name[]);
 
+
+//Adds player to linked list.
 void insertPlayer(long playerID, char lastName[], char firstName[], int age)
 {
     statusType status = SUCCESS;
@@ -50,7 +52,7 @@ PnodePTR findPlayer(long p_ID)
     return NULL;
 }
 
-
+//Delete player from team
 statusType deletePlayerFromTeam(long p_ID)
 {
     PnodePTR p;
@@ -78,7 +80,7 @@ statusType deletePlayerFromTeam(long p_ID)
     return status;
 }
 
-
+//Delete player from linked list
 void deletePlayer(long p_ID)
 {
     PnodePTR q;
@@ -113,7 +115,7 @@ void deletePlayer(long p_ID)
     else printf("FAILURE\n");
 
 }
-
+//Returns pointer to Team by name
 teamPtr findTeam(char name[])
 {
     teamPtr t = head.teamlist;
@@ -124,7 +126,7 @@ teamPtr findTeam(char name[])
     }
     return NULL;
 }
-
+//Adds team to linked list of teams.
 void insertTeam(char team_name[])
 {
     teamPtr new_team;
@@ -148,7 +150,7 @@ void insertTeam(char team_name[])
 }
 
 
-
+//Deletes team from linked list.
 void deleteTeam(char name[])
 {
     statusType status = SUCCESS;
@@ -189,6 +191,7 @@ void deleteTeam(char name[])
     else printf("FAILURE\n");
 }
  
+//Adds player to team.
 void addPlayertoTeam(long plyrID, char team[])
 {
     playerPtr pll;
@@ -289,7 +292,7 @@ void printTeaminfo(char team[])
 }
 
 
-
+//Checks if a player is free or taken by a team.
 void isPlayerFree(long pID)
 {
     PnodePTR p = findPlayer(pID);
@@ -385,6 +388,7 @@ void sortTeamListBy_Names()
         else printf("ERROR NO TEAMS\n");
     }
 
+//Bubble sort by amount of players in team from smallest to biggest
 void sortTeamListBy_Num()
 {
     int i, j, swa;
@@ -423,7 +427,7 @@ void sortTeamListBy_Num()
     else printf("ERROR\n");
 }
 
-
+//exit
 void exit_Program()
 {
     PnodePTR p=head.playerlist;

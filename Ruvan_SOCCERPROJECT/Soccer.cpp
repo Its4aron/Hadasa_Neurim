@@ -12,7 +12,7 @@ int fal;
 PnodePTR findPlayer(long p_ID);
 teamPtr findTeam(char name[]);
 
-statusType insertPlayer(long playerID, char lastName[], char firstName[], int age)
+void insertPlayer(long playerID, char lastName[], char firstName[], int age)
 {
     statusType status = SUCCESS;
     playerPtr p;
@@ -21,19 +21,22 @@ statusType insertPlayer(long playerID, char lastName[], char firstName[], int ag
     if (q)
     {
         status = FAILURE;
-        return status;
+        printf("PLAYER ID EXSISTS\n");
     }
-    p = (playerPtr)malloc(sizeof(playerRec));
-   q = (Pnode*)malloc(sizeof(Pnode));
-    p->plyrID = playerID;
-    strcpy(p->firstName, firstName);
-    strcpy(p->lastName, lastName); 
-    p->age = age;
-    q->tmptr = NULL;
-    q->PL = *p;
-    q->next = head.playerlist;
-    head.playerlist = q;
-    return status;
+    else
+    {
+        p = (playerPtr)malloc(sizeof(playerRec));
+        q = (Pnode*)malloc(sizeof(Pnode));
+        p->plyrID = playerID;
+        strcpy(p->firstName, firstName);
+        strcpy(p->lastName, lastName);
+        p->age = age;
+        q->tmptr = NULL;
+        q->PL = *p;
+        q->next = head.playerlist;
+        head.playerlist = q;
+        printf("ADDED PLAYER: %ld\n", playerID);
+    }
 }
 //find a player
 PnodePTR findPlayer(long p_ID)
@@ -195,7 +198,7 @@ void addPlayertoTeam(long plyrID, char team[])
     p = findPlayer(plyrID);
     t = findTeam(team);
     if ((p == NULL) || (t == NULL)) status = FAILURE;
-    else if (!p->tmptr) status = FAILURE;
+    else if (p->tmptr) status = FAILURE;
     else
     {
         p->tmptr = t;
@@ -204,6 +207,7 @@ void addPlayertoTeam(long plyrID, char team[])
             pll = &p->PL;
             t->plarray = (playerPtr*)realloc(t->plarray, sizeof(playerPtr));
             t->plarray[0] = pll;
+            t->num++;
         }
         else
         {

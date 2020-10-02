@@ -13,7 +13,7 @@ typedef enum {
 typedef enum { FALSE, TRUE } booly;
 
 //funcs
- statusType insertPlayer(long playerID, char lastName[], char firstName[], int age);
+ void insertPlayer(long playerID, char lastName[], char firstName[], int age);
  PnodePTR findPlayer(long p_ID);
  statusType deletePlayerFromTeam(long p_ID);
  void deletePlayer(long p_ID);
@@ -25,5 +25,10 @@ typedef enum { FALSE, TRUE } booly;
  void sortTeamListBy_Names();
  void sortTeamListBy_Num();
  void exit_Program();
+ void deleteTeam(char name[]);
+ void addPlayertoTeam(long plyrID, char team[]);
+ void isPlayerFree(long pID);
+ void exit_Program();
+ void printTeaminfo(char team[]);
 
 

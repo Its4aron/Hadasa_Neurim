@@ -22,17 +22,16 @@ void main()
 		{
 			system("@cls||clear");
 			long playerID;  
-			char lastName[20]; 
-			char firstName[15];  
 			int age;
 			printf("Enter ID =>  ");
 			scanf("%ld", &playerID);
 			printf("\n");
 			printf("Enter first name => ");
-			scanf("%s", firstName);
+			getchar();
+			char* firstName = CollectStringDynamic();
 			printf("\n");
 			printf("Enter last name => ");
-			scanf("%s", lastName);
+			char* lastName = CollectStringDynamic();
 			printf("\n");
 			printf("Enter age =>  ");
 			scanf("%d", &age);
@@ -57,9 +56,9 @@ void main()
 		case 3:
 		{
 			system("@cls||clear");
-			char name[20];
 			printf("Enter team name => ");
-			scanf("%s", name);
+			getchar();
+			char* name = CollectStringDynamic();
 			insertTeam(name);
 			getchar();
 			getchar();
@@ -67,11 +66,11 @@ void main()
 		}
 		case 4:
 		{
-			char name[20];
 			system("@cls||clear");
 			printf("Enter team name to delete => ");
-			scanf("%s", name);
+			char* name = CollectStringDynamic();
 			deleteTeam(name);
+			free(name);
 			getchar();
 			getchar();
 			break;
@@ -79,16 +78,16 @@ void main()
 		case 5:
 		{
 			system("@cls||clear");
-			char name[20];
 			long id = 0;
 			system("@cls||clear");
 			printf("Enter team name => ");
-			scanf("%s", name);
+			char* name = CollectStringDynamic();
 			printf("\n");
 			printf("Enter player id =>  ");
 			scanf("%ld", &id);
 			printf("\n");
 			addPlayertoTeam(id, name);
+			free(name);
 			getchar();
 			getchar();
 			break;
@@ -126,23 +125,25 @@ void main()
 		case 9:
 		{
 			//print info
-			char name[20];
+		
 			system("@cls||clear");
 			printf("Enter team name => ");
-			scanf("%s", name);
+			char* name = CollectStringDynamic();
 			printf("\n");
 			printTeaminfo(name);
+			free(name);
 			getchar();
 			getchar();
 			break;
 		}
 		case 10:
 		{
-			char name[20];
+		
 			system("@cls||clear");
 			printf("Enter team name to delete => ");
-			scanf("%s", name);
+			char* name = CollectStringDynamic();
 			orderInTeamArray(name);
+			free(name);
 			getchar();
 			getchar();
 			break;

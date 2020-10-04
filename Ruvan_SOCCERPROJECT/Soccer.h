@@ -30,5 +30,6 @@ typedef enum { FALSE, TRUE } booly;
  void isPlayerFree(long pID);
  void exit_Program();
  void printTeaminfo(char team[]);
+ char* CollectStringDynamic();
 
 

@@ -6,9 +6,9 @@ typedef struct playerType
 
     int age;
 
-    char firstName[15];
+    char *firstName;
 
-    char lastName[20];
+    char *lastName;
 
 
 }playerRec, * playerPtr;

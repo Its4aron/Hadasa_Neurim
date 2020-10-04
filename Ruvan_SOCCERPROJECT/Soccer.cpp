@@ -6,7 +6,6 @@
 //funcs
 
 headder head;
-int fal;
 
 
 PnodePTR findPlayer(long p_ID);
@@ -30,8 +29,10 @@ void insertPlayer(long playerID, char lastName[], char firstName[], int age)
         p = (playerPtr)malloc(sizeof(playerRec));
         q = (Pnode*)malloc(sizeof(Pnode));
         p->plyrID = playerID;
-        strcpy(p->firstName, firstName);
-        strcpy(p->lastName, lastName);
+       /* strcpy(p->firstName, firstName);
+        strcpy(p->lastName, lastName);*/
+        p->firstName = firstName;
+        p->lastName = lastName;
         p->age = age;
         q->tmptr = NULL;
         q->PL = *p;
@@ -95,6 +96,8 @@ void deletePlayer(long p_ID)
         if (head.playerlist == p)
         {
             head.playerlist = q->next;
+            free(p->PL.firstName);
+            free(p->PL.lastName);
             free(p);
         }
         else
@@ -104,7 +107,10 @@ void deletePlayer(long p_ID)
                 if (q->next == p)
                 {
                     q->next = p->next;
+                    free(p->PL.firstName);
+                    free(p->PL.lastName);
                     free(p);
+                
                     break;
                 }
                 q = q->next;
@@ -425,6 +431,25 @@ void sortTeamListBy_Num()
         }
     }
     else printf("ERROR\n");
+}
+//Collects a string and puts it in dynamic 
+char* CollectStringDynamic()
+{
+    char c;
+    int n = 1;
+    char* str = NULL;
+    str = (char*)realloc(str, sizeof(char) * n + 1);
+    c = getchar();
+    str[n - 1] = c;
+    while (c != '\n')
+    {
+        c = getchar();
+        n++;
+        str = (char*)realloc(str, sizeof(char) * n + 1);
+        str[n - 1] = c;
+    }
+    str[n - 1] = '\0';
+    return str;
 }
 
 //exit

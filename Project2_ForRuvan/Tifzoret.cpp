@@ -19,45 +19,45 @@ void build_wall(char mat[][SIZE], char matb[SIZE + 2][SIZE + 2]);
 Direction FindWord(char mat[][SIZE + 2], char target[], Direction vec_D[]);
 int Search_matrix_for_letter(char mat[][SIZE + 2], char Target, Direction**ptr);
 Direction Search_for_target(Direction dir, char target, Direction mov, char mat[][SIZE + 2]);
-
-void main()
-{
-	Direction vec_dec[] =
-	{
-		{0,0},//No movment
-		{-1,-1},//left top corner
-		{0,-1},//up
-		{1,-1},//right top corner
-		{1,0},//right
-		{1,1},//bottom right corner
-		{0,1},//bottom
-		{-1,1},//bottom left corner
-		{-1,0}//left
-	};
-	char target[SIZE];
-	char mat[SIZE][SIZE] = {};
-	/*char mat[SIZE][SIZE] = {
-	{'r', 'h','0','o','o','e','f','g','d','i'},
-	{'a', 'o' ,'z' ,'d' ,'l', 'n','o','p','q','r'},
-	{'r', 't' ,'r' ,'z' ,'a' ,'l' ,'q' ,'w' ,'s' ,'x' },
-	{'d' ,'d' ,'e' ,'d' ,'f' ,'v' ,'e' ,'w','g' ,'t' },
-	{'n', 'd', 'y', 'w', 'j', 'm', 'w', 'd', 'w', 'l' },
-	{'o', 'p', 'h', 'l', 'o', 'n', 'l', 'e', 'y', 'z' },
-	{'x', 'c', 'v', 'b', 'n', 'm', 'a', 's', 'f', 'g'},
-	{'d', 'j', 'k', 'l', 'b', 'z', 'z', 't', 'y', 'u' },
-	{'o', 'h', 'q', 'z', 'z', 'b' ,'n' ,'h', 'y', 't'},
-	{'r' ,'e' ,'k' ,'l' ,'j' ,'g' ,'d' ,'r' ,'s' ,'a' }
-	};*/
-	build_mat(mat);
-	char matB[SIZE + 2][SIZE + 2] = {};
-	build_wall(mat, matB);
-	print_mat(matB);
-	printf("Enter Word to search for:\n");
-	gets_s(target, sizeof(target));
-	Direction d=  FindWord(matB, target,vec_dec);
-	if (d.nCol == -1)printf("WORD NOT FOUND\n");
-	else printf("WE FOUND IT COLUM: %d ROW :%d\n", d.nCol, d.nRow);
-}
+//
+//void main()
+//{
+//	Direction vec_dec[] =
+//	{
+//		{0,0},//No movment
+//		{-1,-1},//left top corner
+//		{0,-1},//up
+//		{1,-1},//right top corner
+//		{1,0},//right
+//		{1,1},//bottom right corner
+//		{0,1},//bottom
+//		{-1,1},//bottom left corner
+//		{-1,0}//left
+//	};
+//	char target[SIZE];
+//	char mat[SIZE][SIZE] = {};
+//	/*char mat[SIZE][SIZE] = {
+//	{'r', 'h','0','o','o','e','f','g','d','i'},
+//	{'a', 'o' ,'z' ,'d' ,'l', 'n','o','p','q','r'},
+//	{'r', 't' ,'r' ,'z' ,'a' ,'l' ,'q' ,'w' ,'s' ,'x' },
+//	{'d' ,'d' ,'e' ,'d' ,'f' ,'v' ,'e' ,'w','g' ,'t' },
+//	{'n', 'd', 'y', 'w', 'j', 'm', 'w', 'd', 'w', 'l' },
+//	{'o', 'p', 'h', 'l', 'o', 'n', 'l', 'e', 'y', 'z' },
+//	{'x', 'c', 'v', 'b', 'n', 'm', 'a', 's', 'f', 'g'},
+//	{'d', 'j', 'k', 'l', 'b', 'z', 'z', 't', 'y', 'u' },
+//	{'o', 'h', 'q', 'z', 'z', 'b' ,'n' ,'h', 'y', 't'},
+//	{'r' ,'e' ,'k' ,'l' ,'j' ,'g' ,'d' ,'r' ,'s' ,'a' }
+//	};*/
+//	build_mat(mat);
+//	char matB[SIZE + 2][SIZE + 2] = {};
+//	build_wall(mat, matB);
+//	print_mat(matB);
+//	printf("Enter Word to search for:\n");
+//	gets_s(target, sizeof(target));
+//	Direction d=  FindWord(matB, target,vec_dec);
+//	if (d.nCol == -1)printf("WORD NOT FOUND\n");
+//	else printf("WE FOUND IT COLUM: %d ROW :%d\n", d.nCol, d.nRow);
+//}
 
 
 //looks for letter in matrix and puts them in a dynamic array

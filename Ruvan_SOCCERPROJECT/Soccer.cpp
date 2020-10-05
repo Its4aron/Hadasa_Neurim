@@ -367,7 +367,6 @@ void sortTeamListBy_Names()
                 for (j = 0; j < count - i-1; j++)
                 {
                     x = t->next;
-                    if (x == NULL)break;
                     if (strcmp(t->teamName, x->teamName)>0)
                     {
                         if (t == head.teamlist)
@@ -431,9 +430,13 @@ void sortTeamListBy_Num()
                         prev->next = x;
                     }
                     swa = 1;
+                    prev = x;
                 }
-                prev = t;
-                t = t->next;
+                if (!swa)
+                {
+                    prev = t;
+                    t = t->next;
+                }
             }
             if (!swa) break;
         }

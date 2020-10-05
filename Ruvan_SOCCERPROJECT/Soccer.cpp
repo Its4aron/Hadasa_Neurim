@@ -326,7 +326,7 @@ void orderInTeamArray(char team[])
         {
             for (int k = 0; k < ar_len - i - 1; k++)
             {
-                if (strcmp(t->plarray[k]->firstName, t->plarray[k + 1]->firstName) == 1)
+                if (strcmp(t->plarray[k]->firstName, t->plarray[k + 1]->firstName)>0)
                 {
                     temp = t->plarray[k];
                     t->plarray[k] = t->plarray[k + 1];
@@ -356,17 +356,19 @@ int CountTeamList()
 void sortTeamListBy_Names()
 {
         int i, j, swa;
-        teamPtr temp,x;
+        teamPtr temp,x,prev = head.teamlist;
         int count = CountTeamList();
         if (count) {
-            for (i = 0; i <= count; i++)
+            for (i = 0; i < count; i++)
             {
                 teamPtr t = head.teamlist;
+                prev = t;
                 swa = 0;
-                for (j = 0; j < count - i - 1; j++)
+                for (j = 0; j < count - i-1; j++)
                 {
                     x = t->next;
-                    if (strcmp(t->teamName, x->teamName) == 1)
+                    if (x == NULL)break;
+                    if (strcmp(t->teamName, x->teamName)>0)
                     {
                         if (t == head.teamlist)
                         {
@@ -380,10 +382,16 @@ void sortTeamListBy_Names()
                             temp = x->next;
                             x->next = t;
                             t->next = temp;
+                            prev->next = x;
                         }
                         swa = 1;
+                        prev = x;
                     }
-                    t = t->next;
+                    if (!swa)
+                    {
+                        prev = t;
+                        t = t->next;
+                    }
                 }
                 if (!swa) break;
             }
@@ -395,7 +403,7 @@ void sortTeamListBy_Names()
 void sortTeamListBy_Num()
 {
     int i, j, swa;
-    teamPtr temp, x;
+    teamPtr temp, x,prev = head.teamlist;
     int count = CountTeamList();
     if (count) {
         for (i = 0; i <= count; i++)
@@ -414,14 +422,17 @@ void sortTeamListBy_Num()
                         head.teamlist->next = t;
                         t->next = temp;
                     }
+                    //x is the one thats being swapped
                     else
                     {
                         temp = x->next;
                         x->next = t;
                         t->next = temp;
+                        prev->next = x;
                     }
                     swa = 1;
                 }
+                prev = t;
                 t = t->next;
             }
             if (!swa) break;

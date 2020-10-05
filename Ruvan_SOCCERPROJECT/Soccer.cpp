@@ -29,8 +29,6 @@ void insertPlayer(long playerID, char lastName[], char firstName[], int age)
         p = (playerPtr)malloc(sizeof(playerRec));
         q = (Pnode*)malloc(sizeof(Pnode));
         p->plyrID = playerID;
-       /* strcpy(p->firstName, firstName);
-        strcpy(p->lastName, lastName);*/
         p->firstName = firstName;
         p->lastName = lastName;
         p->age = age;
@@ -110,7 +108,6 @@ void deletePlayer(long p_ID)
                     free(p->PL.firstName);
                     free(p->PL.lastName);
                     free(p);
-                
                     break;
                 }
                 q = q->next;
@@ -282,7 +279,7 @@ void printTeaminfo(char team[])
 {
     teamPtr t;
     t = findTeam(team);
-    if (team == NULL) printf("ERROR\n");
+    if (t == NULL) printf("ERROR\n");
     else
     {
         if (t->num)
@@ -447,6 +444,7 @@ char* CollectStringDynamic()
         n++;
         str = (char*)realloc(str, sizeof(char) * n + 1);
         str[n - 1] = c;
+        if (n == 50) break;
     }
     str[n - 1] = '\0';
     return str;

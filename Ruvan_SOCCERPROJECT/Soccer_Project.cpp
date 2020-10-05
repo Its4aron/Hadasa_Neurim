@@ -80,12 +80,12 @@ void main()
 			system("@cls||clear");
 			long id = 0;
 			system("@cls||clear");
-			printf("Enter team name => ");
-			char* name = CollectStringDynamic();
-			printf("\n");
 			printf("Enter player id =>  ");
 			scanf("%ld", &id);
 			printf("\n");
+			getchar();
+			printf("Enter team name => ");
+			char* name = CollectStringDynamic();
 			addPlayertoTeam(id, name);
 			free(name);
 			getchar();
@@ -125,14 +125,13 @@ void main()
 		case 9:
 		{
 			//print info
-		
 			system("@cls||clear");
 			printf("Enter team name => ");
+			getchar();
 			char* name = CollectStringDynamic();
 			printf("\n");
 			printTeaminfo(name);
 			free(name);
-			getchar();
 			getchar();
 			break;
 		}

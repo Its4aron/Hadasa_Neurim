@@ -10,7 +10,6 @@ typedef struct playerType
 
     char *lastName;
 
-
 }playerRec, * playerPtr;
 
 typedef struct PlayerNode

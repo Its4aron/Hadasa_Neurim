@@ -3,8 +3,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "Soccer.h"
-//funcs
 
+
+//GLOBAL VARIBLE
 headder head;
 
 
@@ -174,6 +175,7 @@ void deleteTeam(char name[])
                 pl = findPlayer(ID);
                 if (pl)pl->tmptr = NULL;
             }
+        }
             if (head.teamlist == t)
             {
                 head.teamlist = t->next;
@@ -188,7 +190,6 @@ void deleteTeam(char name[])
                 s->next = t->next;
             }
             free(t);
-        }
     }
     if (status)printf("SUCCESS\n");
     else printf("FAILURE\n");
@@ -326,7 +327,7 @@ void orderInTeamArray(char team[])
         {
             for (int k = 0; k < ar_len - i - 1; k++)
             {
-                if (strcmp(t->plarray[k]->firstName, t->plarray[k + 1]->firstName)>0)
+                if (strcmp(t->plarray[k]->lastName, t->plarray[k + 1]->lastName)>0)
                 {
                     temp = t->plarray[k];
                     t->plarray[k] = t->plarray[k + 1];
@@ -405,7 +406,7 @@ void sortTeamListBy_Num()
     teamPtr temp, x,prev = head.teamlist;
     int count = CountTeamList();
     if (count) {
-        for (i = 0; i <= count; i++)
+        for (i = 0; i < count; i++)
         {
             teamPtr t = head.teamlist;
             swa = 0;

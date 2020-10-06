@@ -1,0 +1,6 @@
+2 Pooh                 12 12 1948
+3 James_Bond           4 12 1970
+1 Sasson_Sassoni       10 1 1988
+4 Elvis_is_Alive!      11 11 1890
+5 Shilgiya             11 11 1948
+6 Cleopatra            12 11 1948
